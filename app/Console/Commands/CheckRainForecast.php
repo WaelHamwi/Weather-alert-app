@@ -25,13 +25,11 @@ class CheckRainForecast extends Command
 
     public function handle()
     {
-        // Fetch users with their associated locations
         $users = User::with('locations')->get();
 
         foreach ($users as $user) {
             foreach ($user->locations as $location) {
 
-                // Get forecast for the location by city name or coordinates
                 if ($location->name) {
                     $forecast = $this->weatherService->getHourlyForecast($location->name);
                     $alerts = $this->weatherService->getSevereWeatherAlerts(null, null, $location->name); // Pass city name if available

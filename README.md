@@ -314,89 +314,72 @@ npx tailwindcss -i ./resources/css/app.css -o ./public/css/app.css --watch
 
 #!/bin/bash
 
+#!/bin/bash
+
 # 🧪 Testing Results
 
 # 📋 Unit Tests
-echo "📋 Unit Tests"
-echo "Write unit tests for your models and services."
-echo "Mock external API calls to ensure reliability."
-echo "Aim for at least 70% code coverage."
-echo
+# Write unit tests for your models and services.
+# Mock external API calls to ensure reliability.
+# Aim for at least 70% code coverage.
 
 # 🧑‍🔬 Test the User Model
-echo "🧑‍🔬 Test the User Model"
 php artisan make:test UserTest --unit
 php artisan test
-echo
+# Expected Output:
+# PASS Tests\Unit\UserTest
+# ✓ Test user model functionality 0.01s
+# Tests: 5 passed (10 assertions)
+# Duration: 0.20s
 
 # 🌤️ Web Service Test
-echo "🌤️ Web Service Test"
 php artisan make:test WeatherServiceTest --unit
 php artisan test --filter WeatherServiceTest
-echo "Or based on the method:"
 php artisan test --filter it_gets_severe_weather_alerts
-echo
-
-# Example Output for Web Service Test
-echo "Example Output:"
-echo "PASS Tests\\Unit\\WeatherServiceTest"
-echo "✓ it gets severe weather alerts 0.61s"
-echo "Tests: 1 passed (4 assertions)"
-echo "Duration: 0.97s"
-echo
+# Expected Output:
+# PASS Tests\Unit\WeatherServiceTest
+# ✓ it gets severe weather alerts 0.61s
+# Tests: 1 passed (4 assertions)
+# Duration: 0.97s
 
 # 🧩 Feature Tests
-echo "🧩 Feature Tests"
-echo "Purpose: Test end-to-end functionality, including interactions between different components of the application."
-echo
+# Purpose: Test end-to-end functionality, including interactions between different components of the application.
 
 # 🌧️ Check Rain Forecast Test
-echo "🌧️ Check Rain Forecast Test"
 php artisan make:test CheckRainForecastTest
 php artisan test --filter CheckRainForecastTest
-echo
-
-# Example Output for Check Rain Forecast Test
-echo "Example Output:"
-echo "PASS Tests\\Feature\\CheckRainForecastTest"
-echo "✓ weather check command 3.16s"
-echo "Tests: 1 passed (1 assertion)"
-echo "Duration: 3.47s"
-echo
+# Expected Output:
+# PASS Tests\Feature\CheckRainForecastTest
+# ✓ weather check command 3.16s
+# Tests: 1 passed (1 assertion)
+# Duration: 3.47s
 
 # ⚠️ Severe Weather Alert Notification
-echo "⚠️ Severe Weather Alert Notification"
 php artisan make:test SevereWeatherAlertNotificationTest
 php artisan test --filter SevereWeatherAlertNotificationTest
-echo
-
-# Example Output for Severe Weather Alert Notification
-echo "Example Output:"
-echo "PASS Tests\\Feature\\SevereWeatherAlertNotificationTest"
-echo "✓ notification is sent 0.48s"
-echo "Tests: 1 passed (1 assertion)"
-echo "Duration: 0.96s"
-echo
+# Expected Output:
+# PASS Tests\Feature\SevereWeatherAlertNotificationTest
+# ✓ notification is sent 0.48s
+# Tests: 1 passed (1 assertion)
+# Duration: 0.96s
 
 # 🏷️ Testing Subscription Flows
-echo "🏷️ Testing Subscription Flows"
 php artisan make:test SubscriptionTest
 php artisan test --filter SubscriptionTest
-echo "For Testing Stripe Methods:"
-composer require mockery/mockery --dev
-echo
 
-# Example Output for Subscription Test
-echo "Example Output:"
-echo "PASS Tests\\Unit\\SubscriptionTest"
-echo "✓ user can start subscription with trial period 0.03s"
-echo "✓ user is charged when trial ends 0.04s"
-echo "✓ user can cancel subscription during trial 0.03s"
-echo "✓ trial can be extended 0.03s"
-echo "Tests: 10 passed (16 assertions)"
-echo "Duration: 2.14s"
-echo
+# For Testing Stripe Methods
+composer require mockery/mockery --dev
+# Expected Output:
+# PASS Tests\Unit\SubscriptionTest
+# ✓ user can start subscription with trial period 0.03s
+# ✓ user is charged when trial ends 0.04s
+# ✓ user can cancel subscription during trial 0.03s
+# ✓ trial can be extended 0.03s
+# Tests: 10 passed (16 assertions)
+# Duration: 2.14s
 
 # 🧪 Generate Coverage Report
-echo "🧪 Generate Coverage Report"
 php artisan test --coverage-html=coverage
+# Expected Output:
+# Coverage report generated in the 'coverage' directory.
+

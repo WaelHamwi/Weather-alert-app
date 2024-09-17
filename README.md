@@ -318,68 +318,70 @@ npx tailwindcss -i ./resources/css/app.css -o ./public/css/app.css --watch
 
 # 🧪 Testing Results
 
-# 📋 Unit Tests
-# Write unit tests for your models and services.
-# Mock external API calls to ensure reliability.
-# Aim for at least 70% code coverage.
+#!/bin/bash
 
-# 🧑‍🔬 Test the User Model
+- 📋 General Testing Guidelines
+- Write unit tests for your models and services.
+- Implement feature tests for key functionalities (weather checks, notifications, subscriptions).
+- Mock external API calls in your tests.
+- Test subscription flows, including trial periods.
+- Aim for at least 70% code coverage.
+
+- 🧑‍🔬 Test the User Model
 php artisan make:test UserTest --unit
 php artisan test
-# Expected Output:
-# PASS Tests\Unit\UserTest
-# ✓ Test user model functionality 0.01s
-# Tests: 5 passed (10 assertions)
-# Duration: 0.20s
+- Expected Output:
+- PASS Tests\Unit\UserTest
+- ✓ user has locations 0.85s
+- Tests: 1 passed (3 assertions)
+- Duration: 0.90s
 
-# 🌤️ Web Service Test
+- 🌤️ Web Service Test
 php artisan make:test WeatherServiceTest --unit
 php artisan test --filter WeatherServiceTest
 php artisan test --filter it_gets_severe_weather_alerts
-# Expected Output:
-# PASS Tests\Unit\WeatherServiceTest
-# ✓ it gets severe weather alerts 0.61s
-# Tests: 1 passed (4 assertions)
-# Duration: 0.97s
+- Expected Output:
+- PASS Tests\Unit\WeatherServiceTest
+- ✓ it gets severe weather alerts 0.61s
+- Tests: 1 passed (4 assertions)
+- Duration: 0.97s
 
-# 🧩 Feature Tests
-# Purpose: Test end-to-end functionality, including interactions between different components of the application.
+- 🧩 Feature Tests
+- Purpose: To test end-to-end functionality, including interactions between different components of the application.
 
-# 🌧️ Check Rain Forecast Test
+- 🌧️ Check Rain Forecast Test
 php artisan make:test CheckRainForecastTest
 php artisan test --filter CheckRainForecastTest
-# Expected Output:
-# PASS Tests\Feature\CheckRainForecastTest
-# ✓ weather check command 3.16s
-# Tests: 1 passed (1 assertion)
-# Duration: 3.47s
+- Expected Output:
+- PASS Tests\Feature\CheckRainForecastTest
+- ✓ weather check command 3.16s
+- Tests: 1 passed (1 assertion)
+- Duration: 3.47s
 
-# ⚠️ Severe Weather Alert Notification
+- ⚠️ Severe Weather Alert Notification
 php artisan make:test SevereWeatherAlertNotificationTest
 php artisan test --filter SevereWeatherAlertNotificationTest
-# Expected Output:
-# PASS Tests\Feature\SevereWeatherAlertNotificationTest
-# ✓ notification is sent 0.48s
-# Tests: 1 passed (1 assertion)
-# Duration: 0.96s
+- Expected Output:
+- PASS Tests\Feature\SevereWeatherAlertNotificationTest
+- ✓ notification is sent 0.48s
+- Tests: 1 passed (1 assertion)
+- Duration: 0.96s
 
-# 🏷️ Testing Subscription Flows
+- 🏷️ Testing Subscription Flows
 php artisan make:test SubscriptionTest
 php artisan test --filter SubscriptionTest
-
-# For Testing Stripe Methods
+- For Testing Stripe Methods
 composer require mockery/mockery --dev
-# Expected Output:
-# PASS Tests\Unit\SubscriptionTest
-# ✓ user can start subscription with trial period 0.03s
-# ✓ user is charged when trial ends 0.04s
-# ✓ user can cancel subscription during trial 0.03s
-# ✓ trial can be extended 0.03s
-# Tests: 10 passed (16 assertions)
-# Duration: 2.14s
+- Expected Output:
+- PASS Tests\Unit\SubscriptionTest
+- ✓ user can start subscription with trial period 0.03s
+- ✓ user is charged when trial ends 0.04s
+- ✓ user can cancel subscription during trial 0.03s
+- ✓ trial can be extended 0.03s
+- Tests: 10 passed (16 assertions)
+- Duration: 2.14s
 
-# 🧪 Generate Coverage Report
+- 🧪 Generate Coverage Report
 php artisan test --coverage-html=coverage
-# Expected Output:
-# Coverage report generated in the 'coverage' directory.
-
+- Expected Output:
+- Coverage report generated in the 'coverage' directory.

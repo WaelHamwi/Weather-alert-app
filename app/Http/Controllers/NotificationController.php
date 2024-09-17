@@ -9,20 +9,20 @@ class NotificationController extends Controller
 {
     public function markAsRead($notificationId)
     {
-        $user = Auth::user(); // Get the authenticated user
+        $user = Auth::user();
 
-        $notification = $user->notifications()->find($notificationId); // Find the specific notification
+        $notification = $user->notifications()->find($notificationId); 
         if ($notification) {
-            $notification->markAsRead(); // Mark the notification as read
+            $notification->markAsRead(); 
         }
 
-        return redirect()->back(); // Redirect back to the previous page
+        return redirect()->back(); 
     }
 
     public function index()
     {
-        $user = Auth::user(); // Get the authenticated user
-        $notifications = $user->notifications; // Retrieve all notifications
-        return view('notifications.index', compact('notifications')); // Pass notifications to the view
+        $user = Auth::user(); 
+        $notifications = $user->notifications; 
+        return view('notifications.index', compact('notifications')); 
     }
 }

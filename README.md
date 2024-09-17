@@ -318,8 +318,6 @@ npx tailwindcss -i ./resources/css/app.css -o ./public/css/app.css --watch
 
 # 🧪 Testing Results
 
-#!/bin/bash
-
 - 📋 General Testing Guidelines
 - Write unit tests for your models and services.
 - Implement feature tests for key functionalities (weather checks, notifications, subscriptions).

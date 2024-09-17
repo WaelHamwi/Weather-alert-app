@@ -118,8 +118,6 @@ class SubscriptionController extends Controller
                 $user->stripe_id = $customer->id;
                 $user->save();
             }
-
-            // Create a Stripe Checkout session
             $checkout_session = CheckoutSession::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[

@@ -29,9 +29,8 @@ class SubscriptionController extends Controller
     {
         $user = Auth::user();
         if (!$user) {
-            return redirect()->route('login'); // Redirect to login if the user is not authenticated
+            return redirect()->route('login'); 
         }
-        //get the difference time to check if the user still has trial days
         $trialDays = now()->lessThan($user->trial_ends_at) ? now()->diffInDays($user->trial_ends_at) : 0;
         if ($trialDays > 0) {
             return view('subscription.trial', compact('trialDays'));
@@ -75,7 +74,7 @@ class SubscriptionController extends Controller
                     'quantity' => $quantity
                 ]],
                 'mode' => 'subscription',
-                'customer' => $user->stripe_id, // to distinguish the user from the webhook Associate the customer with the checkout session
+                'customer' => $user->stripe_id, 
                 'success_url' => route('subscribe.success', ['plan' => $plan]),
                 'cancel_url' => route('subscribe.cancel'),
             ]);
@@ -134,15 +133,12 @@ class SubscriptionController extends Controller
                 'cancel_url' => route('subscribe.cancel'),
             ]);
 
-            // Calculate the new subscription end date
             $currentEndDate = $user->subscription_ends_at ? Carbon::parse($user->subscription_ends_at) : null;
             if ($currentEndDate && now()->lessThan($currentEndDate)) {
                 $newEndDate = ($plan === 'yearly') ? $currentEndDate->addYear() : $currentEndDate->addMonth();
             } else {
                 $newEndDate = ($plan === 'yearly') ? now()->addYear() : now()->addMonth();
             }
-
-            // Update the subscription plan and end date
             $user->subscription_plan = $plan;
             $user->subscription_ends_at = $newEndDate;
             $user->save();

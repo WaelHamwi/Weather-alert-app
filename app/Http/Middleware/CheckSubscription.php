@@ -34,6 +34,6 @@ class CheckSubscription
 
 
         // Redirect to a page or show an error if the user is not subscribed
-        return redirect()->route('home')->with('error', 'You need a subscription to access this feature.');
+        return redirect()->route('subscribe.not-subscribed')->with('error', 'You need a subscription to access this feature.');
     }
 }

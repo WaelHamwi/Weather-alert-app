@@ -37,7 +37,6 @@ class SubscriptionController extends Controller
         }
         return $this->checkout($request);
     }
-    //we redirect users to checkout if they still have trial period and they want to proceed with the paid plan
 
 
     public function checkout(Request $request)
